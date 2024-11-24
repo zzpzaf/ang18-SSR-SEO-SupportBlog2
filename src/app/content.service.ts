@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { DataService } from './data.service';
-import { IArticle, ICategory, Pages } from './dbObjects/blogObjects';
+import { IArticleDTO, ICategory, Pages } from './dbObjects/blogObjects';
 import { Location } from '@angular/common';
 import { environment } from '../environments/environment';
 
@@ -46,15 +46,22 @@ export class ContentService {
 
   public $categories = signal<ICategory[]>([]);
   public $category = signal<ICategory>({ categoryId: 0, categoryTitle: '' });
-  public $article = signal<IArticle>({
+  public $article = signal<IArticleDTO>({
     articleId: -1,
     categoryId: -1,
     articleTitle: '',
     articleSubTitle: '',
     articleContent: '',
     articleSlug: '',
+    articleDescription: '',
+    articleCreationTimestamp: new Date("2000-1-1T00:00:0.001"),
+    articleLastUpdTimestamp: new Date("2000-1-1T100:00:0.001"),
+    userId: -1,
+    userSlugName: '',
+    userName: '',
+    userSurname: ''
   });
-  public $categoryArticles = signal<IArticle[]>([]);
+  public $categoryArticles = signal<IArticleDTO[]>([]);
 
   public signalCategories(): void {
     this.dataService.getCategories().subscribe((categories: ICategory[]) => {
@@ -83,7 +90,7 @@ export class ContentService {
   public signalCategoryArticles(categoryId: number): void {
     this.dataService
       .getCategoryArticles(categoryId)
-      .subscribe((categoryarticles: IArticle[]) => {
+      .subscribe((categoryarticles: IArticleDTO[]) => {
         this.$categoryArticles.set(categoryarticles);
         // console.log('>=== --- >> ' + ComponentName + ' - ' + 'signalCategoryArticles()' + ' * Before ifs * ' +  this.$article().articleId + ' **-** ' + this.$article().articleSlug);
         if (this.$article().categoryId != categoryId) {
@@ -100,8 +107,8 @@ export class ContentService {
   public signalArticle(requestedArticle: number | string): void {
     // console.log('>=== aaa >> ' + ComponentName + ' - ' + 'signalArticle()' + ' - we are going to fetch the article with id: ' +  requestedId);
     this.dataService
-      .getArticle(requestedArticle)
-      .subscribe((article: IArticle) => {
+      .getArticleDTO(requestedArticle)
+      .subscribe((article: IArticleDTO) => {
         // console.log(
         //   '>=== aaa >> ' +
         //     ComponentName +

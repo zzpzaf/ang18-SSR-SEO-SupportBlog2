@@ -63,16 +63,32 @@ export const DynLayOutComponents: DynLayOutComponentsType = {
 export interface ICategory {
   categoryId: number;
   categoryTitle: string;
+  categoryStatusId?: number;
+  categoryUUID?: string;   
 }
 
 export interface IArticle {
   articleId: number;
   categoryId: number;
+  userId: number;
   articleTitle: string;
   articleSubTitle: string;
-  articleContent: string;
   articleSlug: string;
+  articleDescription: string;
+  articleContent: string;
+  articleStatusId?: number;
+  articleUUID?: string;
+  articleCreationTimestamp: Date;
+  articleLastUpdTimestamp: Date;
 }
+
+export interface IArticleDTO extends IArticle{
+  userSlugName: string;
+  userName: string;
+  userSurname: string;
+}
+
+
 
 export interface ISiteMenu {
   siteMenuId: number;
