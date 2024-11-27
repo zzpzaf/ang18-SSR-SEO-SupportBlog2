@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
-import { ContentService } from '../content.service';
-import { IArticle, ICategory } from '../dbObjects/blogObjects';
+import { ContentService } from '../shared/content.service';
+import { IArticle, ICategory } from '../objects/dataObjects';
 
 const ComponentName = 'LeftpaneComponent';
 

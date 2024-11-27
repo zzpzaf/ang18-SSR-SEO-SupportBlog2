@@ -1,8 +1,8 @@
 import { Component, effect, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
-import { IArticle, IArticleDTO } from '../dbObjects/blogObjects';
-import { ContentService } from '../content.service';
+import { ArticleDTO, IArticleDTO } from '../objects/dataObjects';
+import { ContentService } from '../shared/content.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { MarkdownModule } from 'ngx-markdown';	    
@@ -40,25 +40,10 @@ export class MainComponent {
   private sanitizer = inject(DomSanitizer);
   
 
-  public article: IArticleDTO = {
-    articleId: -1,
-    categoryId: -1,
-    articleTitle: '',
-    articleSubTitle: '',
-    articleContent: '',
-    articleSlug: '',
-    articleDescription: '',
-    articleCreationTimestamp: new Date("2000-1-1T00:00:0.001"),
-    articleLastUpdTimestamp: new Date("2000-1-1T100:00:0.001"),
-    userId: -1,
-    userSlugName: '',
-    userName: '',
-    userSurname: ''
-  };
+  public article: ArticleDTO = new ArticleDTO();
   public pgNr: number = 0;
   public pageContent = '';
   public safeHtmlContent!: SafeHtml;
 
-  // public externaURLsafeContent = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.devxperiences.com/pzwp1/2024/09/05/angular-confer-the-power-from-your-observables-to-signals/");
-
+  
 }

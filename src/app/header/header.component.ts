@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { ContentService } from '../content.service';
+import { ContentService } from '../shared/content.service';
 
 const ComponentName = 'HeaderComponent';
 @Component({
@@ -21,7 +21,7 @@ const ComponentName = 'HeaderComponent';
 export class HeaderComponent {
 
   private contentService = inject(ContentService);
-  headerTitle = 'Angular18 - A simple blog implementation';
+  headerTitle = 'A simple blog site implementation based on Angular, Spring Boot and MariaDB';
 
   public homeClicked() {
     this.contentService.signalPageContent(1);

@@ -3,8 +3,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { ICategory, IPage, ISiteMenu, Pages } from '../dbObjects/blogObjects';
-import { ContentService } from '../content.service';
+import { IPage, Pages } from '../objects/blogObjects';
+import { ICategory } from '../objects/dataObjects';
+import { ContentService } from '../shared/content.service';
 
 
 const ComponentName = 'NavrowComponent';

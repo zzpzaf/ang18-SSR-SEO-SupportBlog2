@@ -1,16 +1,9 @@
 import { Component, effect, inject, OnInit, Type } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { AddCompDynDirective } from './add-comp-dyn.directive';
-import { HeaderComponent } from './header/header.component';
-import { NavrowComponent } from './navrow/navrow.component';
-import { LeftpaneComponent } from './leftpane/leftpane.component';
-import { MainComponent } from './main/main.component';
-import { RightpaneComponent } from './rightpane/rightpane.component';
-import { FooterComponent } from './footer/footer.component';
-import { ContentService } from './content.service';
-import { Tile, TilesLarge, TilesMedium, TilesNoPosts, TilesSmall } from './dbObjects/blogObjects';
+import { ContentService } from './shared/content.service';
+import { Tile, TilesLarge, TilesMedium, TilesNoPosts, TilesSmall } from './objects/blogObjects';
 
 const ComponentName = 'AppComponent';
 
@@ -19,14 +12,7 @@ const ComponentName = 'AppComponent';
   standalone: true,
   imports: [
     MatGridListModule,
-    HeaderComponent,
-    NavrowComponent,
-    LeftpaneComponent,
-    MainComponent,
-    RightpaneComponent,
-    FooterComponent,
     AddCompDynDirective,
-    RouterOutlet,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

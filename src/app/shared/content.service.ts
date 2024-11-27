@@ -1,8 +1,9 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { DataService } from './data.service';
-import { IArticleDTO, ICategory, Pages } from './dbObjects/blogObjects';
+import { ArticleDTO, IArticleDTO, ICategory } from '../objects/dataObjects';
+import { Pages } from '../objects/blogObjects';
 import { Location } from '@angular/common';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 
 const ComponentName = 'ContentService';
 
@@ -46,21 +47,8 @@ export class ContentService {
 
   public $categories = signal<ICategory[]>([]);
   public $category = signal<ICategory>({ categoryId: 0, categoryTitle: '' });
-  public $article = signal<IArticleDTO>({
-    articleId: -1,
-    categoryId: -1,
-    articleTitle: '',
-    articleSubTitle: '',
-    articleContent: '',
-    articleSlug: '',
-    articleDescription: '',
-    articleCreationTimestamp: new Date("2000-1-1T00:00:0.001"),
-    articleLastUpdTimestamp: new Date("2000-1-1T100:00:0.001"),
-    userId: -1,
-    userSlugName: '',
-    userName: '',
-    userSurname: ''
-  });
+  public $article = signal<ArticleDTO>(new ArticleDTO());
+
   public $categoryArticles = signal<IArticleDTO[]>([]);
 
   public signalCategories(): void {
@@ -132,15 +120,6 @@ export class ContentService {
           this.signalCategory(this.$article().categoryId);
           // console.log('>=== aaa >> ' + ComponentName + ' - ' + 'signalArticle() 2' + ' article fetched: ' + this.$article().articleId  + ' * article category ID * ' +  this.$article().categoryId + ' * Categoy category ID * ' + this.$category().categoryId);
         } else {
-          // this.$article.set({
-          //   articleId: -1,
-          //   categoryId: -1,
-          //   articleTitle: 'Not Found!',
-          //   articleSubTitle: 'Article Not Found!',
-          //   articleContent: 'Not Found!',
-          //   articleSlug: 'Not Found!',
-          // });
-          // Not Found
           this.signalPageContent(99);
           // console.log('>=== aaa >> ' + ComponentName + ' - ' + 'signalArticle()' + ' - ' +  JSON.stringify(this.$article()));
         }

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, of, retry, throwError } from 'rxjs';
-import { IArticle, IArticleDTO, ICategory } from './dbObjects/blogObjects';
-import { environment } from '../environments/environment';
+import { IArticle, IArticleDTO, ICategory } from '../objects/dataObjects';
+import { environment } from '../../environments/environment';
 
 const ComponentName = 'DataService';
 

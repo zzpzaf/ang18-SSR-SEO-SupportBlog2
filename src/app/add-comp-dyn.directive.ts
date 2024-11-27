@@ -1,5 +1,5 @@
 import { ComponentRef, Directive, effect, input, ViewContainerRef } from '@angular/core';
-import { DynLayOutComponents } from './dbObjects/blogObjects';
+import { DynLayOutComponents } from './objects/blogObjects';
 
 const ComponentName = 'AddCompDynDirective';
 @Directive({
