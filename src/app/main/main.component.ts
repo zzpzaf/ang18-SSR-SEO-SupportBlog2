@@ -5,7 +5,8 @@ import { ArticleDTO, IArticleDTO } from '../objects/dataObjects';
 import { ContentService } from '../shared/content.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-import { MarkdownModule } from 'ngx-markdown';	    
+import { MarkdownModule } from 'ngx-markdown';	
+import { SeoService } from '../shared/seo.service';
 
 const ComponentName = 'MainComponent';
 @Component({
@@ -20,6 +21,17 @@ const ComponentName = 'MainComponent';
   styleUrl: './main.component.scss',
 })
 export class MainComponent {
+
+  private contentService = inject(ContentService);
+  private sanitizer = inject(DomSanitizer);
+  private seoService = inject(SeoService);
+
+  public article: ArticleDTO = new ArticleDTO();
+  public pgNr: number = 0;
+  public pageContent = '';
+  public safeHtmlContent!: SafeHtml;
+
+
   constructor() {
     effect(() => {
 
@@ -33,17 +45,9 @@ export class MainComponent {
         this.pageContent = this.contentService.$pageContent();
         this.safeHtmlContent = this.sanitizer.bypassSecurityTrustHtml(this.pageContent);
       }
+      // Update the page with meta - tags and structured data
+      this.seoService.updateTags(this.pgNr, this.article, this.pgNr == 0 ? this.article.articleContent : this.pageContent );        
     });
   }
-
-  private contentService = inject(ContentService);
-  private sanitizer = inject(DomSanitizer);
-  
-
-  public article: ArticleDTO = new ArticleDTO();
-  public pgNr: number = 0;
-  public pageContent = '';
-  public safeHtmlContent!: SafeHtml;
-
   
 }

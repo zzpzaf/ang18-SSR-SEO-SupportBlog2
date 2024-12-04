@@ -1,8 +1,8 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal, PLATFORM_ID  } from '@angular/core';
 import { DataService } from './data.service';
 import { ArticleDTO, IArticleDTO, ICategory } from '../objects/dataObjects';
 import { Pages } from '../objects/blogObjects';
-import { Location, PlatformLocation } from '@angular/common';
+import { Location, PlatformLocation, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { environment } from '../../environments/environment';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
@@ -24,6 +24,8 @@ export class ContentService {
   private router = inject(Router);
   private platformLocation= inject(PlatformLocation);
 
+  private readonly platform = inject(PLATFORM_ID);
+
   public $noPostsPageNr = signal<number>(0);
   public $pageContent = signal<string>('');
 
@@ -38,7 +40,7 @@ export class ContentService {
 
 
   constructor() {
-    if (this.$categories.length === 0) this.signalCategories();
+    if (isPlatformBrowser(this.platform) && this.$categories.length === 0) this.signalCategories();  //Without browser checking, this caused a build error
     this.listenToBrowserNavigation();
   }
 

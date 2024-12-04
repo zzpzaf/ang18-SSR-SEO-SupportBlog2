@@ -69,11 +69,13 @@ export interface ISiteMenu {
 export interface IPage {
   PageId: number;
   PageTitle: string;
+  PageDescription: string;
   PageSlug: string;
 }
+
 export const Pages: IPage[] = [
-  { PageId: 1, PageTitle: 'Home', PageSlug: 'home'},
-  { PageId: 2, PageTitle: 'About', PageSlug: 'about'},
-  { PageId: 3, PageTitle: 'Contact', PageSlug: 'contact' },
-  { PageId: 99, PageTitle: 'NotFound', PageSlug: '' },
+  { PageId: 1, PageTitle: 'Home', PageDescription: 'The Home Page', PageSlug: 'home'},
+  { PageId: 2, PageTitle: 'About', PageDescription: 'The About Page', PageSlug: 'about'},
+  { PageId: 3, PageTitle: 'Contact', PageDescription: 'The Contact Page', PageSlug: 'contact' },
+  { PageId: 99, PageTitle: 'NotFound',PageDescription: 'Not Found Page',  PageSlug: '' },
 ];

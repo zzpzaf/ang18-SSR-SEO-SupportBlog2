@@ -5,7 +5,7 @@
 
 ### A sample Angular project for Search Engine Oprimization (SEO) for your SSR blog site.
 
-<!-- ![app image](src/assets/images/app.gif) -->
+![app image](src/assets/images/app.webp)
 
 
 This repo is actually a sequel of the previous repo:
